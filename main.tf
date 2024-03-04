@@ -1,45 +1,43 @@
-/*
-Create the S3 bucket
-*/
-resource "aws_s3_bucket" "bucket" {
+# resource "aws_s3_bucket" "bucket" {
+#   bucket = "louis-website-hosting"
+# }
 
-}
+# resource "aws_s3_bucket_website_configuration" "bucket_web_config" {
+#   bucket = aws_s3_bucket.bucket.id
 
-/*
-Once the S3 bucket has been created, configure that S3 bucket (via referencing)
-to route to the index document for the website (the html file name)
-*/
-resource "aws_s3_bucket_website_configuration" "bucket_web_config" {
+#   index_document {
+#     suffix = "index.html"
+#   }
+# }
 
-}
+# resource "aws_s3_bucket_public_access_block" "public_access" {
+#   bucket = aws_s3_bucket.bucket.id
 
-/*
-Configure the S3 bucket settings (via referecing) to disable all ACL block public access
-*/
-resource "aws_s3_bucket_public_access_block" "public_access" {
+#   block_public_acls       = false
+#   block_public_policy     = false
+#   ignore_public_acls      = false
+#   restrict_public_buckets = false
+# }
 
-}
+# resource "aws_s3_bucket_ownership_controls" "bucket_ownership" {
+#   bucket = aws_s3_bucket.bucket.id
 
-/*
-Configure the S3 bucket Object Ownership rule to `BucketOwnerPreferred`
-*/
-resource "aws_s3_bucket_ownership_controls" "bucket_ownership" {
+#   rule {
+#     object_ownership = "BucketOwnerPreferred"
+#   }
+# }
 
-}
+# resource "aws_s3_bucket_acl" "public_acl" {
+#   depends_on = [
+#     aws_s3_bucket_website_configuration.bucket_web_config,
+#     aws_s3_bucket_public_access_block.public_access,
+#     aws_s3_bucket_ownership_controls.bucket_ownership
+#   ]
 
-/*
-Configure the S3 bucket acl to `public-read` you will also need to make sure this block
-runs after `aws_s3_bucket_ownership_controls` and `aws_s3_bucket_public_access_block`
+#   bucket = aws_s3_bucket.bucket.id
+#   acl    = "public-read"
+# }
 
-Hint: the `depends_on` argument will help here
-*/
-resource "aws_s3_bucket_acl" "public_acl" {
-
-}
-
-/*
-Create an output where it prints the `website_endpoint` attribute from the `aws_s3_bucket_website_configuration` block
-*/
-output "endpoint" {
-  
-}
+# output "endpoint" {
+#   value = aws_s3_bucket_website_configuration.bucket_web_config.website_endpoint
+# }
