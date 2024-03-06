@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  TF_ORG: "louis-manabat"
+  TF_CLOUD_ORGANIZATION: "louis-manabat"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
   TF_WORKSPACE: "luis-s3-website-solution"
   CONFIG_DIRECTORY: "./"
